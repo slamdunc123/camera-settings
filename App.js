@@ -3,6 +3,7 @@ import { StatusBar, StyleSheet, View } from 'react-native';
 import { Amplify } from 'aws-amplify';
 import awsconfig from './src/aws-exports';
 import Home from './src/Home';
+import 'core-js/full/symbol/async-iterator';
 
 Amplify.configure(awsconfig);
 

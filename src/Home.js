@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import { DataStore } from 'aws-amplify';
 import { Setting } from './models';
+import ImageUploader from './ImageUploader';
+import * as ImagePicker from 'expo-image-picker';
 
 const Header = () => (
 	<View style={styles.headerContainer}>
@@ -21,17 +23,35 @@ const Header = () => (
 const AddSettingModal = ({ modalVisible, setModalVisible }) => {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
+	const [image, setImage] = useState(null);
 
 	async function addSetting() {
-    await DataStore.save(new Setting({ name, description, isComplete: false }));
-    setModalVisible(false);
-    setName('');
-    setDescription('');
-  }
+		await DataStore.save(
+			new Setting({ name, description, isComplete: false })
+		);
+		setModalVisible(false);
+		setName('');
+		setDescription('');
+		setImage(null);
+	}
 
 	function closeModal() {
 		setModalVisible(false);
 	}
+
+	const handleChooseImage = async () => {
+		// No permissions request is necessary for launching the image library
+		let result = await ImagePicker.launchImageLibraryAsync({
+			mediaTypes: ImagePicker.MediaTypeOptions.All,
+			allowsEditing: true,
+			aspect: [4, 3],
+			quality: 1,
+		});
+
+		if (!result.canceled) {
+			setImage(result.assets[0].uri);
+		}
+	};
 
 	return (
 		<Modal
@@ -58,7 +78,15 @@ const AddSettingModal = ({ modalVisible, setModalVisible }) => {
 						placeholder='Description'
 						style={styles.modalInput}
 					/>
-					<Pressable onPress={addSetting} style={styles.buttonContainer}>
+					<ImageUploader
+						handleChooseImage={handleChooseImage}
+						image={image}
+					/>
+
+					<Pressable
+						onPress={addSetting}
+						style={styles.buttonContainer}
+					>
 						<Text style={styles.buttonText}>Save Setting</Text>
 					</Pressable>
 				</View>
@@ -71,34 +99,36 @@ const SettingList = () => {
 	const [settings, setSettings] = useState([]);
 
 	useEffect(() => {
-		//query the initial todolist and subscribe to data updates
-    const subscription = DataStore.observeQuery(Setting).subscribe((snapshot) => {
-      //isSynced can be used to show a loading spinner when the list is being loaded. 
-      const { items, isSynced } = snapshot;
-      setSettings(items);
-    });
+		//query the initial settinglist and subscribe to data updates
+		const subscription = DataStore.observeQuery(Setting).subscribe(
+			(snapshot) => {
+				//isSynced can be used to show a loading spinner when the list is being loaded.
+				const { items, isSynced } = snapshot;
+				setSettings(items);
+			}
+		);
 
-    //unsubscribe to data updates when component is destroyed so that you don’t introduce a memory leak.
-    return function cleanup() {
-      subscription.unsubscribe();
-    }
+		//unsubscribe to data updates when component is destroyed so that you don’t introduce a memory leak.
+		return function cleanup() {
+			subscription.unsubscribe();
+		};
 	}, []);
 
 	async function deleteSetting(setting) {
-    try {
-      await DataStore.delete(setting);
-    } catch (e) {
-      console.log(`Delete failed: ${e}`);
-    }
+		try {
+			await DataStore.delete(setting);
+		} catch (e) {
+			console.log(`Delete failed: ${e}`);
+		}
 	}
 
 	async function setComplete(updateValue, setting) {
-		   //update the setting item with updateValue
-       await DataStore.save(
-        Setting.copyOf(setting, updated => {
-          updated.isComplete = updateValue
-        })
-      );
+		//update the setting item with updateValue
+		await DataStore.save(
+			Setting.copyOf(setting, (updated) => {
+				updated.isComplete = updateValue;
+			})
+		);
 	}
 
 	const renderItem = ({ item }) => (
