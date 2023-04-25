@@ -36,23 +36,13 @@ const AddSettingModal = ({ modalVisible, setModalVisible }) => {
 		}
 	}
 
-	const formatImageUri = () => {
-		const { uri } = image;
-
-		const fileName = uri.substring(uri.lastIndexOf('/') + 1, uri.length);
-
-		return fileName;
-	};
-
 	async function addSetting() {
-		const fileName = image && formatImageUri();
-
 		await DataStore.save(
 			new Setting({
 				name,
 				description,
 				isComplete: false,
-				image: fileName,
+				image: image.uri,
 			})
 		);
 
