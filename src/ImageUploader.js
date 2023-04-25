@@ -4,7 +4,7 @@ import {View, Image, Button, StyleSheet} from 'react-native';
 const ImageUploader = ({handleChooseImage, image}) => {
   return (
     <View style={styles.imageView}>
-      {image && <Image source={{uri: image}} style={styles.image} />}
+      {image && <Image source={{uri: image.uri}} style={styles.image} />}
       <Button
         style={styles.imageBtn}
         title="Select Image"

@@ -15,6 +15,7 @@ type EagerSetting = {
   readonly name: string;
   readonly description: string;
   readonly isComplete: boolean;
+  readonly image?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -28,6 +29,7 @@ type LazySetting = {
   readonly name: string;
   readonly description: string;
   readonly isComplete: boolean;
+  readonly image?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
