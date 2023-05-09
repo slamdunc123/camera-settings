@@ -24,13 +24,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "isComplete": {
-                    "name": "isComplete",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "image": {
                     "name": "image",
                     "isArray": false,

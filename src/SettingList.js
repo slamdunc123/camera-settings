@@ -66,7 +66,7 @@ const SettingList = () => {
 					deleteSetting(item);
 				}}
 				onPress={() => {
-					setComplete(!item.isComplete, item);
+					console.log({ id: item.id, name: item.name });
 				}}
 				style={styles.settingContainer}
 			>
@@ -77,22 +77,9 @@ const SettingList = () => {
 				{item.image && (
 					<Image
 						source={{ uri: item.image }}
-						style={{
-							width: 50,
-							height: 50,
-							backgroundColor: 'grey',
-						}}
+						style={styles.settingImage}
 					/>
 				)}
-
-				<Text
-					style={[
-						styles.checkbox,
-						item.isComplete && styles.completedCheckbox,
-					]}
-				>
-					{item.isComplete ? '✓' : ''}
-				</Text>
 			</Pressable>
 		);
 	};
@@ -108,7 +95,11 @@ const SettingList = () => {
 
 const styles = StyleSheet.create({
 	settingContainer: {
+		alignSelf: 'center',
+		width: 250,
+		height: 100,
 		alignItems: 'center',
+		justifyContent: 'space-between',
 		backgroundColor: '#fff',
 		borderRadius: 2,
 		elevation: 4,
@@ -126,6 +117,11 @@ const styles = StyleSheet.create({
 	settingHeading: {
 		fontSize: 20,
 		fontWeight: '600',
+	},
+	settingImage: {
+		width: 75,
+		height: 75,
+		backgroundColor: 'grey',
 	},
 	checkbox: {
 		borderRadius: 2,
