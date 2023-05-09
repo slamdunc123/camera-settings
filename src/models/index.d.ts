@@ -15,6 +15,12 @@ type EagerSetting = {
   readonly name: string;
   readonly description: string;
   readonly image?: string | null;
+  readonly aperture?: string | null;
+  readonly shutter?: string | null;
+  readonly iso?: string | null;
+  readonly exposure_bracketing?: string | null;
+  readonly white_balance?: string | null;
+  readonly light_metering?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -28,6 +34,12 @@ type LazySetting = {
   readonly name: string;
   readonly description: string;
   readonly image?: string | null;
+  readonly aperture?: string | null;
+  readonly shutter?: string | null;
+  readonly iso?: string | null;
+  readonly exposure_bracketing?: string | null;
+  readonly white_balance?: string | null;
+  readonly light_metering?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

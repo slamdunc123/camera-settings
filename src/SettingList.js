@@ -70,10 +70,8 @@ const SettingList = ({ navigation }) => {
 				}}
 				style={styles.settingContainer}
 			>
-				<Text>
 					<Text style={styles.settingHeading}>{item.name}</Text>
-					{`\n${item.description}`}
-				</Text>
+				
 				{item.image && (
 					<Image
 						source={{ uri: item.image }}

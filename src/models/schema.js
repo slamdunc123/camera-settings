@@ -31,6 +31,48 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "aperture": {
+                    "name": "aperture",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "shutter": {
+                    "name": "shutter",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "iso": {
+                    "name": "iso",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "exposure_bracketing": {
+                    "name": "exposure_bracketing",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "white_balance": {
+                    "name": "white_balance",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "light_metering": {
+                    "name": "light_metering",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -77,5 +119,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.6",
-    "version": "c27b4661a4ff3e67e410d4b1c466e5f5"
+    "version": "6df689a3803d3e3d8129c30e9a874f1a"
 };

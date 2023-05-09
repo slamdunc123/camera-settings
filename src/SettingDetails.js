@@ -24,7 +24,17 @@ const SettingDetails = ({ route }) => {
 				/>
 			)}
 			<Text style={styles.settingHeading}>{setting.name}</Text>
+      <View style={styles.settingSettings}>
+
 			<Text>{setting.description}</Text>
+			<Text>{`A: ${setting.aperture}`}</Text>
+			<Text>{`S: ${setting.shutter}`}</Text>
+			<Text>{`ISO: ${setting.iso}`}</Text>
+			<Text>{`EB: ${setting.exposure_bracketing}`}</Text>
+			<Text>{`WB: ${setting.white_balance}`}</Text>
+			<Text>{`LM: ${setting.light_metering}`}</Text>
+      </View>
+			
 		</View>
 	);
 };
@@ -54,6 +64,10 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		fontWeight: '600',
 	},
+  settingSettings: {
+    flexDirection: 'column', 
+    width: '100%'
+  },
 	settingImage: {
 		width: 200,
 		height: 200,

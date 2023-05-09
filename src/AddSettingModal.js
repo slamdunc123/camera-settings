@@ -15,6 +15,12 @@ import { Setting } from './models';
 const AddSettingModal = ({ modalVisible, setModalVisible }) => {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
+	const [aperture, setAperture] = useState('');
+	const [shutter, setShutter] = useState('');
+	const [iso, setIso] = useState('');
+	const [exposureBracketing, setExposureBracketing] = useState('');
+	const [whiteBalance, setWhiteBalance] = useState('');
+	const [lightMetering, setLightMetering] = useState('');
 	const [image, setImage] = useState(null);
 
 	async function createStoragePathToImageFile() {
@@ -41,6 +47,12 @@ const AddSettingModal = ({ modalVisible, setModalVisible }) => {
 			new Setting({
 				name,
 				description,
+				aperture,
+				shutter,
+				iso,
+				exposure_bracketing: exposureBracketing,
+				white_balance: whiteBalance,
+				light_metering: lightMetering,
 				image: image.uri,
 			})
 		);
@@ -49,6 +61,12 @@ const AddSettingModal = ({ modalVisible, setModalVisible }) => {
 		setModalVisible(false);
 		setName('');
 		setDescription('');
+		setAperture('');
+		setShutter('');
+		setIso('');
+		setExposureBracketing('');
+		setWhiteBalance('');
+		setLightMetering('');
 		setImage(null);
 	}
 
@@ -93,6 +111,36 @@ const AddSettingModal = ({ modalVisible, setModalVisible }) => {
 					<TextInput
 						onChangeText={setDescription}
 						placeholder='Description'
+						style={styles.modalInput}
+					/>
+					<TextInput
+						onChangeText={setAperture}
+						placeholder='Aperture'
+						style={styles.modalInput}
+					/>
+					<TextInput
+						onChangeText={setShutter}
+						placeholder='Shutter'
+						style={styles.modalInput}
+					/>
+					<TextInput
+						onChangeText={setIso}
+						placeholder='ISO'
+						style={styles.modalInput}
+					/>
+					<TextInput
+						onChangeText={setExposureBracketing}
+						placeholder='Exposure Bracketing'
+						style={styles.modalInput}
+					/>
+					<TextInput
+						onChangeText={setWhiteBalance}
+						placeholder='White Balance'
+						style={styles.modalInput}
+					/>
+					<TextInput
+						onChangeText={setLightMetering}
+						placeholder='Light Metering'
 						style={styles.modalInput}
 					/>
 					<ImageUploader
