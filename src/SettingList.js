@@ -3,7 +3,7 @@ import { DataStore, Storage } from 'aws-amplify';
 import { FlatList, Image, Pressable, StyleSheet, Text } from 'react-native';
 import { Setting } from './models';
 
-const SettingList = () => {
+const SettingList = ({ navigation }) => {
 	const [settings, setSettings] = useState([]);
 
 	useEffect(() => {
@@ -66,7 +66,7 @@ const SettingList = () => {
 					deleteSetting(item);
 				}}
 				onPress={() => {
-					console.log({ id: item.id, name: item.name });
+					navigation.navigate('Setting Details', { itemId: item.id });
 				}}
 				style={styles.settingContainer}
 			>
@@ -96,7 +96,7 @@ const SettingList = () => {
 const styles = StyleSheet.create({
 	settingContainer: {
 		alignSelf: 'center',
-		width: 250,
+		width: '80%',
 		height: 100,
 		alignItems: 'center',
 		justifyContent: 'space-between',
@@ -122,19 +122,6 @@ const styles = StyleSheet.create({
 		width: 75,
 		height: 75,
 		backgroundColor: 'grey',
-	},
-	checkbox: {
-		borderRadius: 2,
-		borderWidth: 2,
-		fontWeight: '700',
-		height: 20,
-		marginLeft: 'auto',
-		textAlign: 'center',
-		width: 20,
-	},
-	completedCheckbox: {
-		backgroundColor: '#000',
-		color: '#fff',
 	},
 });
 

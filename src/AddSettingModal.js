@@ -17,7 +17,7 @@ const AddSettingModal = ({ modalVisible, setModalVisible }) => {
 	const [description, setDescription] = useState('');
 	const [image, setImage] = useState(null);
 
-	async function pathToImageFile() {
+	async function createStoragePathToImageFile() {
 		try {
 			const response = await fetch(image.uri);
 			const blob = await response.blob();
@@ -41,12 +41,11 @@ const AddSettingModal = ({ modalVisible, setModalVisible }) => {
 			new Setting({
 				name,
 				description,
-				isComplete: false,
 				image: image.uri,
 			})
 		);
 
-		if (!!image) pathToImageFile();
+		if (!!image) createStoragePathToImageFile();
 		setModalVisible(false);
 		setName('');
 		setDescription('');

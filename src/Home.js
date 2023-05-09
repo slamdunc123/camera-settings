@@ -4,20 +4,20 @@ import Header from './Header';
 import AddSettingModal from './AddSettingModal';
 import SettingList from './SettingList';
 
-const Home = () => {
+const Home = ({ navigation }) => {
 	const [modalVisible, setModalVisible] = useState(false);
 
 	return (
 		<>
-			<Header />
-			<SettingList />
+			{/* <Header /> */}
+			<SettingList navigation={navigation} />
 			<Pressable
 				onPress={() => {
 					setModalVisible(true);
 				}}
 				style={[styles.buttonContainer, styles.floatingButton]}
 			>
-				<Text style={styles.buttonText}>+ Add Setting</Text>
+				<Text style={styles.buttonText}>+</Text>
 			</Pressable>
 			<AddSettingModal
 				modalVisible={modalVisible}
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 		padding: 16,
 	},
 	buttonContainer: {
-		alignSelf: 'center',
+		alignSelf: 'flex-end',
 		backgroundColor: '#4696ec',
 		borderRadius: 99,
 		paddingHorizontal: 8,

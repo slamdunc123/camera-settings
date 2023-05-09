@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const Header = () => (
 	<View style={styles.headerContainer}>
-		<Text style={styles.headerTitle}>My Setting List</Text>
+		<Text style={styles.headerTitle}>Camera Settings</Text>
 	</View>
 );
 
