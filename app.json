@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "debdbe2e-268c-4a8e-8d4f-efc072f8b222"
+      }
+    },
+    "owner": "slamdunc"
   }
 }
