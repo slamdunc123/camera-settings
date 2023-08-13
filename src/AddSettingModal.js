@@ -7,6 +7,7 @@ import {
 	View,
 	StyleSheet,
 	Modal,
+	ScrollView,
 } from 'react-native';
 import ImageUploader from './ImageUploader';
 import * as ImagePicker from 'expo-image-picker';
@@ -27,7 +28,7 @@ const AddSettingModal = ({ modalVisible, setModalVisible }) => {
 		try {
 			const response = await fetch(image.uri);
 			const blob = await response.blob();
-
+			// TODO: need to put image name into Storage not name
 			await Storage.put(name, blob, {
 				contentType: 'image/jpeg', // contentType is optional
 
@@ -95,67 +96,69 @@ const AddSettingModal = ({ modalVisible, setModalVisible }) => {
 			transparent
 			visible={modalVisible}
 		>
-			<View style={styles.modalContainer}>
-				<View style={styles.modalInnerContainer}>
-					<Pressable
-						onPress={closeModal}
-						style={styles.modalDismissButton}
-					>
-						<Text style={styles.modalDismissText}>X</Text>
-					</Pressable>
-					<TextInput
-						onChangeText={setName}
-						placeholder='Name'
-						style={styles.modalInput}
-					/>
-					<TextInput
-						onChangeText={setDescription}
-						placeholder='Description'
-						style={styles.modalInput}
-					/>
-					<TextInput
-						onChangeText={setAperture}
-						placeholder='Aperture'
-						style={styles.modalInput}
-					/>
-					<TextInput
-						onChangeText={setShutter}
-						placeholder='Shutter'
-						style={styles.modalInput}
-					/>
-					<TextInput
-						onChangeText={setIso}
-						placeholder='ISO'
-						style={styles.modalInput}
-					/>
-					<TextInput
-						onChangeText={setExposureBracketing}
-						placeholder='Exposure Bracketing'
-						style={styles.modalInput}
-					/>
-					<TextInput
-						onChangeText={setWhiteBalance}
-						placeholder='White Balance'
-						style={styles.modalInput}
-					/>
-					<TextInput
-						onChangeText={setLightMetering}
-						placeholder='Light Metering'
-						style={styles.modalInput}
-					/>
-					<ImageUploader
-						handleChooseImage={handleChooseImage}
-						image={image}
-					/>
+			<ScrollView>
+				<View style={styles.modalContainer}>
+					<View style={styles.modalInnerContainer}>
+						<Pressable
+							onPress={closeModal}
+							style={styles.modalDismissButton}
+						>
+							<Text style={styles.modalDismissText}>X</Text>
+						</Pressable>
+						<TextInput
+							onChangeText={setName}
+							placeholder='Name'
+							style={styles.modalInput}
+						/>
+						<TextInput
+							onChangeText={setDescription}
+							placeholder='Description'
+							style={styles.modalInput}
+						/>
+						<TextInput
+							onChangeText={setAperture}
+							placeholder='Aperture'
+							style={styles.modalInput}
+						/>
+						<TextInput
+							onChangeText={setShutter}
+							placeholder='Shutter'
+							style={styles.modalInput}
+						/>
+						<TextInput
+							onChangeText={setIso}
+							placeholder='ISO'
+							style={styles.modalInput}
+						/>
+						<TextInput
+							onChangeText={setExposureBracketing}
+							placeholder='Exposure Bracketing'
+							style={styles.modalInput}
+						/>
+						<TextInput
+							onChangeText={setWhiteBalance}
+							placeholder='White Balance'
+							style={styles.modalInput}
+						/>
+						<TextInput
+							onChangeText={setLightMetering}
+							placeholder='Light Metering'
+							style={styles.modalInput}
+						/>
+						<ImageUploader
+							handleChooseImage={handleChooseImage}
+							image={image}
+						/>
 
-					<Pressable
-						onPress={addSetting}
-						style={styles.buttonContainer}
-					>
-						<Text style={styles.buttonText}>Save Setting</Text>
-					</Pressable>
+						<Pressable
+							onPress={addSetting}
+							style={styles.buttonContainer}
+						>
+							<Text style={styles.buttonText}>Save Setting</Text>
+						</Pressable>
+					</View>
 				</View>
-			</View>
+			</ScrollView>
 		</Modal>
 	);
 };

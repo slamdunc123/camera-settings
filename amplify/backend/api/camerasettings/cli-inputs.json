@@ -5,8 +5,9 @@
     "serviceName": "AppSync",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "keyDescription": "api key description",
-      "expirationTime": 30
+      "expirationTime": 30,
+      "apiKeyExpirationDate": "2023-09-11T09:40:35.979Z",
+      "keyDescription": "camera-settings api"
     },
     "additionalAuthTypes": [
       {

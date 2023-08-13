@@ -7,7 +7,7 @@ const ImageUploader = ({handleChooseImage, image}) => {
       {image && <Image source={{uri: image.uri}} style={styles.image} />}
       <Button
         style={styles.imageBtn}
-        title="Select Image"
+        title="Choose Image"
         onPress={handleChooseImage}
       />
     </View>

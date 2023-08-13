@@ -50,15 +50,6 @@ const SettingList = ({ navigation }) => {
 		}
 	}
 
-	async function setComplete(updateValue, setting) {
-		//update the setting item with updateValue
-		await DataStore.save(
-			Setting.copyOf(setting, (updated) => {
-				updated.isComplete = updateValue;
-			})
-		);
-	}
-
 	const renderItem = ({ item }) => {
 		return (
 			<Pressable
@@ -70,8 +61,8 @@ const SettingList = ({ navigation }) => {
 				}}
 				style={styles.settingContainer}
 			>
-					<Text style={styles.settingHeading}>{item.name}</Text>
-				
+				<Text style={styles.settingHeading}>{item.name}</Text>
+
 				{item.image && (
 					<Image
 						source={{ uri: item.image }}
